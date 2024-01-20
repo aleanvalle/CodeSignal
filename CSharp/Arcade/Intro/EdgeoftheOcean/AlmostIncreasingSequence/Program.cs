@@ -4,12 +4,13 @@
     {
         bool StrictlyIncreasing(int[] sequence, int previous_maximum = int.MaxValue, int iteration = 0)
         {
-            int last_int = sequence.Last();
-            int max_int = sequence.Max();
-            int all_except_last = sequence.Length - 1;
-            if (sequence.Length > 1 & iteration >= 0)
+            if (sequence.Length > 0 & iteration >= 0)
             {
-                if (max_int < previous_maximum & max_int == last_int)
+                int max_int = sequence.Max();
+                int last_int_pos = sequence.Length - 1;
+                int max_int_pos = sequence.ToList().LastIndexOf(max_int);
+                int all_except_last = last_int_pos;
+                if (max_int < previous_maximum & max_int_pos == last_int_pos)
                 {
                     var newSequence = sequence.Take(all_except_last).ToArray();
                     previous_maximum = max_int;
@@ -24,11 +25,10 @@
             }
             else
             {
-                return iteration >= 0;
+                return iteration > 0;
             }
-                
-
         }
+
         bool AlmostIncreasingSequence(int[] sequence)
         {
             var checks = new List<bool>();
@@ -57,6 +57,9 @@
             int[] d = { 1, 2, 3, 4, 6 };
             int[] e = { 2, 3, 4, 100, 95, 102 };
             int[] f = { 5, 2, 4, 1, 95, 102 };
+            int[] g = { 1, 2, 1, 2 };
+            int[] h = { 1, 1, 2, 3, 4, 4 };
+            int[] i = { 1, 1, 1, 2, 3 };
             Console.WriteLine("b_strictly: " + a.StrictlyIncreasing(b));
             Console.WriteLine("c_strictly: " + a.StrictlyIncreasing(c));
             Console.WriteLine("d_strictly: " + a.StrictlyIncreasing(d));
@@ -67,6 +70,12 @@
             Console.WriteLine("d_almost: " + a.AlmostIncreasingSequence(d));
             Console.WriteLine("e_almost: " + a.AlmostIncreasingSequence(e));
             Console.WriteLine("f_almost: " + a.AlmostIncreasingSequence(f));
+            Console.WriteLine("g_strictly: " + a.StrictlyIncreasing(g));
+            Console.WriteLine("h_strictly: " + a.StrictlyIncreasing(h));
+            Console.WriteLine("i_strictly: " + a.StrictlyIncreasing(i));
+            Console.WriteLine("g_almost: " + a.AlmostIncreasingSequence(g));
+            Console.WriteLine("h_almost: " + a.AlmostIncreasingSequence(h));
+            Console.WriteLine("i_almost: " + a.AlmostIncreasingSequence(i));
         }
     }
 }
