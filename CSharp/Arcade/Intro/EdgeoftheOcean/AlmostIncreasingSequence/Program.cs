@@ -4,32 +4,47 @@ namespace AlmostIncreasingSequence
 {
     internal class Program
     {
-        bool StrictlyIncreasing(int[] sequence)
+        bool StrictlyIncreasing_SortedSet(int[] sequence)
         {
             SortedSet<int> newSequence = new SortedSet<int>(sequence);
             var newSequenceOrdered = newSequence.ToArray();
             return newSequenceOrdered.SequenceEqual(sequence);
         }
 
-        bool StrictlyIncreasing_old(int[] sequence, int previous_maximum = int.MaxValue, int iteration = 0)
+        bool StrictlyIncreasing(int[] sequence, int previousMin = int.MinValue, int previousMax = int.MaxValue, int iteration = 0)
         {
-            if (sequence.Length > 0 & iteration >= 0)
+            if (sequence.Length > 0 && iteration >= 0)
             {
-                int max_int = sequence.Max();
-                int last_int_pos = sequence.Length - 1;
-                int max_int_pos = sequence.ToList().LastIndexOf(max_int);
-                int all_except_last = last_int_pos;
-                if (max_int < previous_maximum & max_int_pos == last_int_pos)
+                int currentMin = sequence.Min();
+                int currentMax = sequence.Max();
+                int firstPos = 0;
+                int lastPos = sequence.Length - 1;
+                int currentMinFirst = sequence.ToList().IndexOf(currentMin);
+                int currentMinLast = sequence.ToList().LastIndexOf(currentMin);
+                int currentMaxFirst = sequence.ToList().IndexOf(currentMax);
+                int currentMaxLast = sequence.ToList().LastIndexOf(currentMax);
+                int all_except_last = lastPos;
+                int all_except_first = firstPos;
+                bool currentMinIsUnique = currentMinFirst == currentMinLast;
+                bool currentMaxIsUnique = currentMaxFirst == currentMaxLast;
+                bool currentMinIsFirst = currentMinFirst == firstPos;
+                bool currentMaxIsLast = currentMaxLast == lastPos;
+                bool currentExtremesAreUnique = currentMinIsUnique && currentMaxIsUnique;
+                bool currentExtremesAreExtremes = currentMinIsFirst && currentMaxIsLast;
+                bool previousMaxIsBigger = currentMax < previousMax;
+                bool previousMinIsSmaller = currentMin > previousMin;
+                if (currentExtremesAreUnique && currentExtremesAreExtremes && previousMaxIsBigger && previousMinIsSmaller)
                 {
-                    var newSequence = sequence.Take(all_except_last).ToArray();
-                    previous_maximum = max_int;
+                    var newSequence = sequence.Take(all_except_last).Skip(all_except_first).ToArray();
+                    previousMax = currentMax;
+                    previousMin = currentMin;
                     iteration++;
-                    return StrictlyIncreasing_old(newSequence, previous_maximum, iteration);
+                    return StrictlyIncreasing(newSequence, previousMin, previousMax, iteration);
                 }
                 else
                 {
                     iteration = -1;
-                    return StrictlyIncreasing_old(sequence, max_int, iteration);
+                    return StrictlyIncreasing(sequence, previousMin, previousMax, iteration);
                 }
             }
             else
@@ -69,16 +84,27 @@ namespace AlmostIncreasingSequence
             int[] g = { 1, 2, 1, 2 };
             int[] h = { 1, 1, 2, 3, 4, 4 };
             int[] i = { 1, 1, 1, 2, 3 };
-            long startTimeNew = Stopwatch.GetTimestamp();
-            Console.WriteLine("b_strictly_new: " + a.StrictlyIncreasing(b));
-            Console.WriteLine("c_strictly_new: " + a.StrictlyIncreasing(c));
-            Console.WriteLine("d_strictly_new: " + a.StrictlyIncreasing(d));
-            Console.WriteLine("e_strictly_new: " + a.StrictlyIncreasing(e));
-            Console.WriteLine("f_strictly_new: " + a.StrictlyIncreasing(f));
-            Console.WriteLine("g_strictly_new: " + a.StrictlyIncreasing(g));
-            Console.WriteLine("h_strictly_new: " + a.StrictlyIncreasing(h));
-            Console.WriteLine("i_strictly_new: " + a.StrictlyIncreasing(i));
-            TimeSpan elapsedTimeNew = Stopwatch.GetElapsedTime(startTimeNew);
+            long startTime_SortedSet = Stopwatch.GetTimestamp();
+            Console.WriteLine("b_strictly_new: " + a.StrictlyIncreasing_SortedSet(b));
+            Console.WriteLine("c_strictly_new: " + a.StrictlyIncreasing_SortedSet(c));
+            Console.WriteLine("d_strictly_new: " + a.StrictlyIncreasing_SortedSet(d));
+            Console.WriteLine("e_strictly_new: " + a.StrictlyIncreasing_SortedSet(e));
+            Console.WriteLine("f_strictly_new: " + a.StrictlyIncreasing_SortedSet(f));
+            Console.WriteLine("g_strictly_new: " + a.StrictlyIncreasing_SortedSet(g));
+            Console.WriteLine("h_strictly_new: " + a.StrictlyIncreasing_SortedSet(h));
+            Console.WriteLine("i_strictly_new: " + a.StrictlyIncreasing_SortedSet(i));
+            TimeSpan elapsedTime_SortedSet = Stopwatch.GetElapsedTime(startTime_SortedSet);
+            Console.WriteLine("////////////////////////////");
+            long startTime = Stopwatch.GetTimestamp();
+            Console.WriteLine("b_strictly_old: " + a.StrictlyIncreasing(b));
+            Console.WriteLine("c_strictly_old: " + a.StrictlyIncreasing(c));
+            Console.WriteLine("d_strictly_old: " + a.StrictlyIncreasing(d));
+            Console.WriteLine("e_strictly_old: " + a.StrictlyIncreasing(e));
+            Console.WriteLine("f_strictly_old: " + a.StrictlyIncreasing(f));
+            Console.WriteLine("g_strictly_old: " + a.StrictlyIncreasing(g));
+            Console.WriteLine("h_strictly_old: " + a.StrictlyIncreasing(h));
+            Console.WriteLine("i_strictly_old: " + a.StrictlyIncreasing(i));
+            TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
             Console.WriteLine("////////////////////////////");
             Console.WriteLine("b_almost: " + a.AlmostIncreasingSequence(b));
             Console.WriteLine("c_almost: " + a.AlmostIncreasingSequence(c));
@@ -89,19 +115,8 @@ namespace AlmostIncreasingSequence
             Console.WriteLine("h_almost: " + a.AlmostIncreasingSequence(h));
             Console.WriteLine("i_almost: " + a.AlmostIncreasingSequence(i));
             Console.WriteLine("////////////////////////////");
-            long startTimeOld = Stopwatch.GetTimestamp();
-            Console.WriteLine("b_strictly_old: " + a.StrictlyIncreasing_old(b));
-            Console.WriteLine("c_strictly_old: " + a.StrictlyIncreasing_old(c));
-            Console.WriteLine("d_strictly_old: " + a.StrictlyIncreasing_old(d));
-            Console.WriteLine("e_strictly_old: " + a.StrictlyIncreasing_old(e));
-            Console.WriteLine("f_strictly_old: " + a.StrictlyIncreasing_old(f));
-            Console.WriteLine("g_strictly_old: " + a.StrictlyIncreasing_old(g));
-            Console.WriteLine("h_strictly_old: " + a.StrictlyIncreasing_old(h));
-            Console.WriteLine("i_strictly_old: " + a.StrictlyIncreasing_old(i));
-            TimeSpan elapsedTimeOld = Stopwatch.GetElapsedTime(startTimeOld);
-            Console.WriteLine("////////////////////////////");
-            Console.WriteLine("Time of strictly_old: " + elapsedTimeOld.TotalSeconds);
-            Console.WriteLine("Time of strictly_new: " + elapsedTimeNew.TotalSeconds);
+            Console.WriteLine("Time of strictly: " + elapsedTime.TotalSeconds);
+            Console.WriteLine("Time of strictly_SortedSet: " + elapsedTime_SortedSet.TotalSeconds);
         }
     }
 }
