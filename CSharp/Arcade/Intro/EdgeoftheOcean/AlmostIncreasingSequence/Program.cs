@@ -6,8 +6,8 @@ namespace AlmostIncreasingSequence
     {
         bool StrictlyIncreasing(int[] sequence)
         {
-            HashSet<int> newSequence = new HashSet<int>(sequence);
-            var newSequenceOrdered = newSequence.Order().ToArray();
+            SortedSet<int> newSequence = new SortedSet<int>(sequence);
+            var newSequenceOrdered = newSequence.ToArray();
             return newSequenceOrdered.SequenceEqual(sequence);
         }
 
