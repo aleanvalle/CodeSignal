@@ -6,8 +6,8 @@
         {
             int limit = n.ToString().Length;
             int half = limit / 2;
-            var firstPart = n.ToString().ToList().Slice(0, half);
-            var secondPart = n.ToString().ToList().Slice(half, limit - half);
+            var firstPart = n.ToString().ToList().Take(limit - half);
+            var secondPart = n.ToString().ToList().Skip(half);
             var firstNumPart = firstPart.Select(x => int.Parse(x.ToString()));
             var secondNumPart = secondPart.Select(x => int.Parse(x.ToString()));
             return firstNumPart.Sum() == secondNumPart.Sum();
