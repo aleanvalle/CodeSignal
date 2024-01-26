@@ -14,9 +14,9 @@
             }
             var orderedHeights = a.Order().ToList();
             orderedHeights.RemoveAll(x => x == -1);
-            for (int t = 0; t < tressPos.Count; t++)
+            foreach (var kv in tressPos)
             {
-                orderedHeights.Insert(tressPos[t], tressPos[t]);
+                orderedHeights.Insert(kv.Key, kv.Value);
             }
             return orderedHeights.ToArray();
         }
@@ -25,7 +25,7 @@
         {
             Program a = new Program();
             int[] heights1 = [-1, 150, 190, 170, -1, -1, 160, 180];
-            Console.WriteLine("result: " + a.SortByHeight(heights1));
+            Console.WriteLine("result: " + string.Join(", ", a.SortByHeight(heights1)));
         }
     }
 }
