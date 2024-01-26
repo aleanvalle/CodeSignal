@@ -12,7 +12,7 @@
                     tressPos[i] = a[i];
                 }
             }
-            var orderedHeights = a.Order().ToList();
+            var orderedHeights = a.OrderBy(x => x).ToList();
             orderedHeights.RemoveAll(x => x == -1);
             foreach (var kv in tressPos)
             {
