@@ -1,4 +1,6 @@
-﻿namespace AreSimilar
+﻿using System.IO.Pipes;
+
+namespace AreSimilar
 {
     internal class Program
     {
@@ -15,6 +17,18 @@
             return dictOfA.SequenceEqual(dictOfB);
         }
 
+        bool AreSimilar(int[] a, int[] b)
+        {
+            if (SimilarityCheck(a, b))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         static void Main(string[] args)
         {
             Program a = new Program();
@@ -27,6 +41,10 @@
             Console.WriteLine("result: " + a.SimilarityCheck(b1, b2));
             Console.WriteLine("result: " + a.SimilarityCheck(c1, c2));
             Console.WriteLine("result: " + a.SimilarityCheck(d1, d2));
+            Console.WriteLine("//////////////");
+            Console.WriteLine("result: " + a.AreSimilar(b1, b2));
+            Console.WriteLine("result: " + a.AreSimilar(c1, c2));
+            Console.WriteLine("result: " + a.AreSimilar(d1, d2));
         }
     }
 }
