@@ -4,9 +4,9 @@
     {
         int[] AlternatingSums(int[] a)
         {
-            List<int> team1 = [];
-            List<int> team2 = [];
-            for(int i = 0; i < a.Length; i++)
+            List<int> team1 = new List<int>();
+            List<int> team2 = new List<int>();
+            for (int i = 0; i < a.Length; i++)
             {
                 if((i + 1) % 2 == 0)
                 {
@@ -17,7 +17,7 @@
                     team1.Add(a[i]);
                 }
             }
-            return [team1.Sum(), team2.Sum()];
+            return new int[] { team1.Sum(), team2.Sum() };
         }
 
         static void Main(string[] args)
