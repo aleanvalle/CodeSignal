@@ -17,15 +17,29 @@ namespace AreSimilar
             return dictOfA.SequenceEqual(dictOfB);
         }
 
+        Dictionary<int, Tuple<int, int>> FindPair(int elemInA, int posElemA, int[] b)
+        {
+            var dict = new Dictionary<int, Tuple<int, int>>();
+            for (int posElemB = 0; posElemB <= b.Length; posElemB++)
+            {
+                if (elemInA == b[posElemB])
+                {
+                    //return new Tuple<int, int, int>(elem, posElem, j);
+                    dict[elemInA] = new Tuple<int, int>(posElemA, posElemB);
+                }
+            }
+            return dict;
+        }
+
         bool AreSimilar(int[] a, int[] b)
         {
-            if (SimilarityCheck(a, b))
+            if (a.Length != b.Length)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
