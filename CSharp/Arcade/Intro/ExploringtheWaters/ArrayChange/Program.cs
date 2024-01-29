@@ -2,29 +2,37 @@
 {
     internal class Program
     {
-        (int,int) NextNewValue(int previous, int next)
+        (int, int, bool) NewValues(int previous, int next)
         {
+            bool countSteps = false;
             if (previous >= next)
             {
-                return (next, previous + 1); 
+                countSteps = true;
+                return (next, previous + 1, countSteps); 
             }
             else
             {
-                return (previous, next);
+                return (previous, next, countSteps);
             }
         }
 
-        int StepsBetween((int,int) startFinish)
+        int StepsBetween((int, int, bool) pairAndCountStep)
         {
-            if(startFinish.Item1 < 0)
+            if (pairAndCountStep.Item3)
             {
-                return Math.Abs(startFinish.Item1) + startFinish.Item2;
+                if (pairAndCountStep.Item1 < 0)
+                {
+                    return Math.Abs(pairAndCountStep.Item1) + pairAndCountStep.Item2;
+                }
+                else
+                {
+                    return pairAndCountStep.Item2 - pairAndCountStep.Item1;
+                }
             }
             else
             {
-                return startFinish.Item2 - startFinish.Item1;
+                return 0;
             }
-            
         }
 
         int ArrayChange(int[] inputArray)
@@ -32,14 +40,9 @@
             int steps = 0;
             for(int i = 0; i < inputArray.Length - 1; i++)
             {
-                //arreglar sumado de steps -1000, 0 -> 1000 steps
-                (int,int) newNext = NextNewValue(inputArray[i], inputArray[i + 1]);
-                steps += StepsBetween(newNext);
-                inputArray[i + 1] = newNext.Item2;
-                if(i == 0)
-                {
-                    inputArray[i] = newNext.Item1;
-                }
+                (int, int, bool) newValues = NewValues(inputArray[i], inputArray[i + 1]);
+                steps += StepsBetween(newValues);
+                inputArray[i + 1] = newValues.Item2;
             }
             return steps;
         }
