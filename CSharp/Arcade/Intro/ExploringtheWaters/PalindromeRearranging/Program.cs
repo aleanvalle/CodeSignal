@@ -13,24 +13,31 @@
 
         Dictionary<char, int> CountAllLetters(string word)
         {
-            Dictionary<char, int> dictOfA = word.OrderByDescending(x => x)
+            Dictionary<char, int> dictOfA = word.OrderBy(x => x)
                 .GroupBy(x => x)
                 .Where(x => x.Count() > 0)
                 .ToDictionary(x => x.Key, x => x.Count());
-            return dictOfA;
+            return dictOfA.OrderByDescending(x => x.Value).ToDictionary();
         }
 
         (string, int, char) PalindromeConstructor((string, int, char) palindromeConstructor, Dictionary<char, int> allLetters)
         {
-            foreach (char k in allLetters.Keys)
+            int oddCounter = 0;
+            for(int index = 0; index < allLetters.Count; index++)
             {
-                int amountOfK = allLetters[k];
+                KeyValuePair<char, int> letterCount = allLetters.ElementAt(index);
+                int amountOfK = letterCount.Value;
                 if (amountOfK % 2 != 0)
                 {
-                    palindromeConstructor.Item2 += 1;
-                    palindromeConstructor.Item3 = k;
+                    oddCounter += 1;
+                    palindromeConstructor.Item3 = letterCount.Key;
                 }
-                palindromeConstructor.Item1 += new string(k, amountOfK / 2);
+                palindromeConstructor.Item1 += new string(letterCount.Key, amountOfK / 2);
+                if(oddCounter == 2)
+                {
+                    index = allLetters.Count;
+                    palindromeConstructor.Item2 = oddCounter;
+                }
             }
             return palindromeConstructor;
         }
@@ -43,7 +50,7 @@
             {
                 var allLetters = CountAllLetters(inputString);
                 palindromeConstructor = PalindromeConstructor(palindromeConstructor, allLetters);
-                if(palindromeConstructor.Item2 >= 2)
+                if(palindromeConstructor.Item2 == 2)
                 {
                     return false;
                 }
@@ -52,7 +59,7 @@
                 {
                     int half = palindromeConstructor.Item1.Length / 2;
                     char lastLetter = palindromeConstructor.Item3;
-                    palindromeConstructor.Item1.Insert(half, lastLetter.ToString());
+                    palindromeConstructor.Item1 = palindromeConstructor.Item1.Insert(half, lastLetter.ToString());
                 }
                 return PalindromeCheck(palindromeNotFound, palindromeConstructor.Item1) == 1;
             }
@@ -65,7 +72,27 @@
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Program a = new Program();
+            string b = "aabb";
+            string c = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc";
+            string d = "abbcabb";
+            string e = "zyyzzzzz";
+            string f = "z";
+            string g = "zaa";
+            string h = "abca";
+            string i = "abcad";
+            string j = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbccccaaaaaaaaaaaaa";
+            string k = "abdhuierf";
+            Console.WriteLine("b: " + a.PalindromeRearranging(b));
+            Console.WriteLine("c: " + a.PalindromeRearranging(c));
+            Console.WriteLine("d: " + a.PalindromeRearranging(d));
+            Console.WriteLine("e: " + a.PalindromeRearranging(e));
+            Console.WriteLine("f: " + a.PalindromeRearranging(f));
+            Console.WriteLine("g: " + a.PalindromeRearranging(g));
+            Console.WriteLine("h: " + a.PalindromeRearranging(h));
+            Console.WriteLine("i: " + a.PalindromeRearranging(i));
+            Console.WriteLine("j: " + a.PalindromeRearranging(j));
+            Console.WriteLine("k: " + a.PalindromeRearranging(k));
         }
     }
 }
