@@ -67,7 +67,6 @@
             {
                 return true;
             }
-            
         }
 
         static void Main(string[] args)
