@@ -17,7 +17,7 @@
                 .GroupBy(x => x)
                 .Where(x => x.Count() > 0)
                 .ToDictionary(x => x.Key, x => x.Count());
-            return dictOfA.OrderByDescending(x => x.Value).ToDictionary();
+            return dictOfA.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, y => y.Value);
         }
 
         (string, int, char) PalindromeConstructor((string, int, char) palindromeConstructor, Dictionary<char, int> allLetters)
@@ -54,7 +54,7 @@
                 {
                     return false;
                 }
-                palindromeConstructor = PalindromeConstructor(palindromeConstructor, allLetters.Reverse().ToDictionary());
+                palindromeConstructor = PalindromeConstructor(palindromeConstructor, allLetters.Reverse().ToDictionary(x => x.Key, y => y.Value));
                 if(palindromeConstructor.Item2 == 1)
                 {
                     int half = palindromeConstructor.Item1.Length / 2;
