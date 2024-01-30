@@ -54,8 +54,13 @@
                     char lastLetter = palindromeConstructor.Item3;
                     palindromeConstructor.Item1.Insert(half, lastLetter.ToString());
                 }
+                return PalindromeCheck(palindromeNotFound, palindromeConstructor.Item1) == 1;
             }
-            return PalindromeCheck(palindromeNotFound, palindromeConstructor.Item1) == 1;
+            else
+            {
+                return true;
+            }
+            
         }
 
         static void Main(string[] args)
