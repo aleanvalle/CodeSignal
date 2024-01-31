@@ -6,18 +6,18 @@
         {
             int maximum = inputArray.Max();
             int maximumPos = inputArray.ToList().IndexOf(maximum);
-            List<int> adjacents = new List<int>();
+            List<int> adjacents;
             if(maximumPos > 0 && maximumPos < inputArray.Length - 1)
             {
-                adjacents = [inputArray[maximumPos - 1], inputArray[maximumPos + 1]];
+                adjacents = new List<int>() { inputArray[maximumPos - 1], inputArray[maximumPos + 1] };
             }
             else if (maximumPos == inputArray.Length - 1)
             {
-                adjacents = [inputArray[maximumPos - 1]];
+                adjacents = new List<int>() { inputArray[maximumPos - 1] };
             }
             else
             {
-                adjacents = [inputArray[maximumPos + 1]];
+                adjacents = new List<int>() { inputArray[maximumPos + 1] };
             }
             return maximum - adjacents.Min();
         }
