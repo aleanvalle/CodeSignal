@@ -4,7 +4,9 @@
     {
         bool AreEquallyStrong(int yourLeft, int yourRight, int friendsLeft, int friendsRight)
         {
-            return (yourLeft + yourRight - friendsLeft - friendsRight) == 0;
+            List<int> yours = [yourLeft, yourRight];
+            List<int> friend = [friendsLeft, friendsRight];
+            return yours.Max() == friend.Max() && yours.Min() == friend.Min();
         }
 
         static void Main(string[] args)
