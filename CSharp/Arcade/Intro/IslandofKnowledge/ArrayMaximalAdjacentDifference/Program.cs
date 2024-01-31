@@ -5,19 +5,41 @@
         int ArrayMaximalAdjacentDifference(int[] inputArray)
         {
             int maximum = inputArray.Max();
-            int maximumPos = inputArray.ToList().IndexOf(maximum);
-            List<int> adjacents;
-            if(maximumPos > 0 && maximumPos < inputArray.Length - 1)
+            HashSet<int> adjacents = new HashSet<int>();
+            for(int i = 0; i < inputArray.Length; i++)
             {
-                adjacents = new List<int>() { inputArray[maximumPos - 1], inputArray[maximumPos + 1] };
+                if(i == 0)
+                {
+                    if(inputArray[i] == maximum && inputArray[i + 1] < maximum)
+                    {
+                        adjacents.Add(inputArray[i + 1]);
+                    }
+                }
+                else if(i < inputArray.Length - 1)
+                {
+                    if (inputArray[i] == maximum)
+                    {
+                        if (inputArray[i + 1] < maximum)
+                        {
+                            adjacents.Add(inputArray[i + 1]);
+                        }
+                        if (inputArray[i - 1] < maximum)
+                        {
+                            adjacents.Add(inputArray[i - 1]);
+                        }
+                    }
+                }
+                else
+                {
+                    if (inputArray[i] == maximum && inputArray[i - 1] < maximum)
+                    {
+                        adjacents.Add(inputArray[i - 1]);
+                    }
+                }
             }
-            else if (maximumPos == inputArray.Length - 1)
+            if(adjacents.Count == 0)
             {
-                adjacents = new List<int>() { inputArray[maximumPos - 1] };
-            }
-            else
-            {
-                adjacents = new List<int>() { inputArray[maximumPos + 1] };
+                adjacents.Add(maximum);
             }
             return maximum - adjacents.Min();
         }
@@ -32,6 +54,7 @@
             int[] f = [-2, -2, -2, -2, -2];
             int[] g = [-1, 1, -3, -4];
             int[] h = [-14, 15, -15];
+            int[] i = [2, 15, 15, 15, -1, 15, 15, 15, 1, 15];
             Console.WriteLine("b: " + a.ArrayMaximalAdjacentDifference(b));
             Console.WriteLine("c: " + a.ArrayMaximalAdjacentDifference(c));
             Console.WriteLine("d: " + a.ArrayMaximalAdjacentDifference(d));
@@ -39,6 +62,7 @@
             Console.WriteLine("f: " + a.ArrayMaximalAdjacentDifference(f));
             Console.WriteLine("g: " + a.ArrayMaximalAdjacentDifference(g));
             Console.WriteLine("h: " + a.ArrayMaximalAdjacentDifference(h));
+            Console.WriteLine("i: " + a.ArrayMaximalAdjacentDifference(i));
         }
     }
 }
