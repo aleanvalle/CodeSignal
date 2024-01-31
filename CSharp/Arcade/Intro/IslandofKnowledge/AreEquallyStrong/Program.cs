@@ -6,6 +6,7 @@
         {
             return (yourLeft + yourRight - friendsLeft - friendsRight) == 0;
         }
+
         static void Main(string[] args)
         {
             Program a = new Program();
