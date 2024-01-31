@@ -4,8 +4,8 @@
     {
         bool AreEquallyStrong(int yourLeft, int yourRight, int friendsLeft, int friendsRight)
         {
-            List<int> yours = [yourLeft, yourRight];
-            List<int> friend = [friendsLeft, friendsRight];
+            List<int> yours = new List<int>() { yourLeft, yourRight };
+            List<int> friend = new List<int>() { friendsLeft, friendsRight };
             return yours.Max() == friend.Max() && yours.Min() == friend.Min();
         }
 
