@@ -5,16 +5,15 @@
         int AvoidObstacles(int[] inputArray)
         {
             List<int> jumps = new List<int>();
-            for(int i = 2; i < 11;)
+            for(int i = 1; i < 1000; i++)
             {
-                if(inputArray.Any(x => x % i == 0))
-                {
-                    i++;
-                }
-                else
+                if(!inputArray.Any(x => x % i == 0))
                 {
                     jumps.Add(i);
-                    i++;
+                }
+                if(jumps.Count >= 1)
+                {
+                    i = 1000;
                 }
             }
             return jumps.Min();
