@@ -2,41 +2,22 @@
 {
     internal class Program
     {
-
         int AvoidObstacles(int[] inputArray)
         {
-            HashSet<int> freeSpaces = new HashSet<int>();
-            if(inputArray.Length > 2) 
+            List<int> jumps = new List<int>();
+            for(int i = 2; i < 11;)
             {
-                for (int i = 0; i < inputArray.Length; i++)
+                if(inputArray.Any(x => x % i == 0))
                 {
-                    if (inputArray[i] != inputArray.Max() && inputArray[i] != inputArray.Min())
-                    {
-                        if (!inputArray.Contains(inputArray[i] + 1))
-                        {
-                            freeSpaces.Add(inputArray[i] + 1);
-                        }
-                        if (!inputArray.Contains(inputArray[i] - 1))
-                        {
-                            freeSpaces.Add(inputArray[i] - 1);
-                        }
-                    }
-                }
-                List<int> freeSpacesToJump = freeSpaces.ToList();
-                freeSpacesToJump.RemoveAll(x => inputArray.Contains(x + x));
-                return freeSpacesToJump.Min();
-            }
-            else
-            {
-                if(inputArray.Min() + inputArray.Min() == inputArray.Max())
-                {
-                    return inputArray.Min() + 1;
+                    i++;
                 }
                 else
                 {
-                    return inputArray.Max() + 1;
+                    jumps.Add(i);
+                    i++;
                 }
             }
+            return jumps.Min();
         }
 
         static void Main(string[] args)
