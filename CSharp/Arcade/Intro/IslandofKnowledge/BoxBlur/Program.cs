@@ -40,25 +40,9 @@
             int ZERO = 0;
             int xLimit = image[0].Length - 1;
             int yLimit = image.Length - 1;
-            if (image.Length == 3 && image[0].Length == 3)
-            {
-                return new int[][] { new int[] { CorneredBlur(image, (ZERO, ZERO)) } };
-            }
-            else if(image.Length == 4 && image[0].Length == 3 || image.Length == 3 && image[0].Length == 4)
-            {
-                return new int[][] { new int[] { CorneredBlur(image, (ZERO, ZERO)), CorneredBlur(image, (ZERO, xLimit - 2)) } };
-            }
-            else
-            {
-                int leftUpper = CorneredBlur(image, (ZERO, ZERO));
-                int rightUpper = CorneredBlur(image, (ZERO, yLimit - 2));
-                int leftLower = CorneredBlur(image, (xLimit - 2, ZERO));
-                int rightLower = CorneredBlur(image, (xLimit - 2, yLimit - 2));
-                return new int[][] { 
-                    new int[] { leftUpper, rightUpper },
-                    new int[] { leftLower, rightLower },
-                };
-            }
+            int[][] boxBlur = { };
+            return boxBlur;
+            //to fix
         }
 
         static void Main(string[] args)
@@ -104,6 +88,10 @@
                 new int[] { 45, 18, 9, 255, 9, 18, 45},
                 new int[] { 27, 81, 36, 127, 255, 72, 81}
             };
+            Console.WriteLine("result: " + (3 * 3 + 3 - 3));
+            Console.WriteLine("result: " + (3 * 4 + 3 - 4));
+            Console.WriteLine("result: " + 16 % 9);
+            Console.WriteLine("result: " + 49 % 9);
             Console.WriteLine(" b: " + a.printMatrix(a.BoxBlur(b)));
             Console.WriteLine(" c: " + a.printMatrix(a.BoxBlur(c)));
             Console.WriteLine(" d: " + a.printMatrix(a.BoxBlur(d)));
