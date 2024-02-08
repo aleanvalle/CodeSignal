@@ -25,24 +25,42 @@
             return "end";
         }
 
-        int CorneredBlur(int[][] image, (int,int) leftUpperCornerGenerator)
+        int BlurEcuation(int[][] image, (int,int) center)
         {
             double sum = 0;
-            sum += image[leftUpperCornerGenerator.Item1][leftUpperCornerGenerator.Item2] + image[leftUpperCornerGenerator.Item1][leftUpperCornerGenerator.Item2 + 1] + image[leftUpperCornerGenerator.Item1][leftUpperCornerGenerator.Item2 + 2]
-                   + image[leftUpperCornerGenerator.Item1 + 1][leftUpperCornerGenerator.Item2] + image[leftUpperCornerGenerator.Item1 + 1][leftUpperCornerGenerator.Item2 + 1] + image[leftUpperCornerGenerator.Item1 + 1][leftUpperCornerGenerator.Item2 + 2]
-                   + image[leftUpperCornerGenerator.Item1 + 2][leftUpperCornerGenerator.Item2] + image[leftUpperCornerGenerator.Item1 + 2][leftUpperCornerGenerator.Item2 + 1] + image[leftUpperCornerGenerator.Item1 + 2][leftUpperCornerGenerator.Item2 + 2];
+            sum += image[center.Item1 - 1][center.Item2 - 1] + image[center.Item1][center.Item2 - 1] + image[center.Item1 + 1][center.Item2 - 1]
+                + image[center.Item1 - 1][center.Item2] + image[center.Item1][center.Item2] + image[center.Item1 + 1][center.Item2]
+                + image[center.Item1 - 1][center.Item2 + 1] + image[center.Item1][center.Item2 + 1] + image[center.Item1 + 1][center.Item2 + 1];
             double result = Math.Floor(sum / 9);
             return Convert.ToInt32(result);
         }
 
         int[][] BoxBlur(int[][] image)
         {
-            int ZERO = 0;
-            int xLimit = image[0].Length - 1;
-            int yLimit = image.Length - 1;
-            int[][] boxBlur = { };
-            return boxBlur;
-            //to fix
+            (int, int) center = (1, 1);
+            int boxColLimit = image[0].Length - 2;
+            int boxRowLimit = image.Length - 2;
+            List<List<int>> boxBlur = new List<List<int>>();
+            for(int row = 0; row < boxRowLimit; row++)
+            {
+                boxBlur.Add(new List<int>());
+                for(int col = 0; col < boxColLimit; col++)
+                {
+                    int blurPixel = BlurEcuation(image, center);
+                    boxBlur[row].Add(blurPixel);
+                    if (col + 1 != boxColLimit)
+                    {
+                        center.Item2 += 1;
+                    }
+                    else
+                    {
+                        center.Item1 += 1;
+                        center.Item2 = 1;
+                        col = boxColLimit;
+                    }
+                }
+            }
+            return boxBlur.Select(l => l.ToArray()).ToArray();
         }
 
         static void Main(string[] args)
@@ -88,10 +106,6 @@
                 new int[] { 45, 18, 9, 255, 9, 18, 45},
                 new int[] { 27, 81, 36, 127, 255, 72, 81}
             };
-            Console.WriteLine("result: " + (3 * 3 + 3 - 3));
-            Console.WriteLine("result: " + (3 * 4 + 3 - 4));
-            Console.WriteLine("result: " + 16 % 9);
-            Console.WriteLine("result: " + 49 % 9);
             Console.WriteLine(" b: " + a.printMatrix(a.BoxBlur(b)));
             Console.WriteLine(" c: " + a.printMatrix(a.BoxBlur(c)));
             Console.WriteLine(" d: " + a.printMatrix(a.BoxBlur(d)));
