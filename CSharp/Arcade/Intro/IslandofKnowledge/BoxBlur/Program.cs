@@ -2,29 +2,6 @@
 {
     internal class Program
     {
-        string printMatrix(int[][] arr)
-        {
-            int rowLength = arr.Length;
-            int colLength = arr[0].Length;
-            Console.Write("[");
-            for (int i = 0; i < rowLength; i++)
-            {
-                Console.Write("[");
-                for (int j = 0; j < colLength; j++)
-                {
-                    Console.Write(string.Format("{0}", arr[i][j]));
-                    if (j + 1 != colLength)
-                    {
-                        Console.Write(",");
-                    }
-                    
-                }
-                Console.Write("]");
-            }
-            Console.Write("]");
-            return "end";
-        }
-
         int BlurEcuation(int[][] image, (int,int) center)
         {
             double sum = 0;
@@ -66,6 +43,7 @@
         static void Main(string[] args)
         {
             Program a = new Program();
+            PrettyMultiArray.Program prettyMultiArray = new PrettyMultiArray.Program();
             int[][] b = { 
                 new int[] { 1, 1, 1},
                 new int[] { 1, 7, 1},
@@ -106,12 +84,12 @@
                 new int[] { 45, 18, 9, 255, 9, 18, 45},
                 new int[] { 27, 81, 36, 127, 255, 72, 81}
             };
-            Console.WriteLine(" b: " + a.printMatrix(a.BoxBlur(b)));
-            Console.WriteLine(" c: " + a.printMatrix(a.BoxBlur(c)));
-            Console.WriteLine(" d: " + a.printMatrix(a.BoxBlur(d)));
-            Console.WriteLine(" e: " + a.printMatrix(a.BoxBlur(e)));
-            Console.WriteLine(" f: " + a.printMatrix(a.BoxBlur(f)));
-            Console.WriteLine(" g: " + a.printMatrix(a.BoxBlur(g)));
+            Console.WriteLine(" b: " + prettyMultiArray.PrintMatrix(a.BoxBlur(b)));
+            Console.WriteLine(" c: " + prettyMultiArray.PrintMatrix(a.BoxBlur(c)));
+            Console.WriteLine(" d: " + prettyMultiArray.PrintMatrix(a.BoxBlur(d)));
+            Console.WriteLine(" e: " + prettyMultiArray.PrintMatrix(a.BoxBlur(e)));
+            Console.WriteLine(" f: " + prettyMultiArray.PrintMatrix(a.BoxBlur(f)));
+            Console.WriteLine(" g: " + prettyMultiArray.PrintMatrix(a.BoxBlur(g)));
         }
     }
 }

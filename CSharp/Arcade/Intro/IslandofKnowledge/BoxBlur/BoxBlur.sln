@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxBlur", "BoxBlur.csproj", "{D5601362-05A1-40EA-A54F-481066CBD8EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoxBlur", "BoxBlur.csproj", "{D5601362-05A1-40EA-A54F-481066CBD8EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrettyMultiArray", "..\..\..\..\..\..\VisualStudioProjects\PrettyMultiArray\PrettyMultiArray.csproj", "{9EF8F113-387A-4170-9F93-CE93D54A55D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D5601362-05A1-40EA-A54F-481066CBD8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5601362-05A1-40EA-A54F-481066CBD8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5601362-05A1-40EA-A54F-481066CBD8EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF8F113-387A-4170-9F93-CE93D54A55D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF8F113-387A-4170-9F93-CE93D54A55D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF8F113-387A-4170-9F93-CE93D54A55D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF8F113-387A-4170-9F93-CE93D54A55D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
