@@ -27,17 +27,7 @@
             return "end";
         }
 
-        List<bool> AddMines(bool[][] matrix, Dictionary<string, (int, int)> arrangement)
-        {
-            List<bool> positions = new List<bool>();
-            foreach (var adjacentPos in arrangement)
-            {
-                positions.Add(matrix[adjacentPos.Value.Item1][adjacentPos.Value.Item2]);
-            }
-            return positions;
-        }
-
-        Dictionary<string, Dictionary<string, (int, int)>> MinesLocator(Dictionary<string, int> coordinate)
+        Dictionary<string, (int, int)> DirectionsGenerator(Dictionary<string, int> coordinate)
         {
             (int, int) east      = (coordinate["col"] + 1, coordinate["row"]    );
             (int, int) southEast = (coordinate["col"] + 1, coordinate["row"] + 1);
@@ -47,129 +37,118 @@
             (int, int) northWest = (coordinate["col"] - 1, coordinate["row"] - 1);
             (int, int) north     = (coordinate["col"]    , coordinate["row"] - 1);
             (int, int) northEast = (coordinate["col"] + 1, coordinate["row"] - 1);
-            Dictionary<string, Dictionary<string, (int, int)>> positions = new Dictionary<string, Dictionary<string, (int, int)>>()
+            return new Dictionary<string, (int, int)>
             {
-                { "LeftUpperCorner", new Dictionary<string, (int, int)>
-                    {
-                        { "East"     , east     }, 
-                        { "Southeast", southEast},
-                        { "South"    , south    }
-                    }
-                },
-                { "RightUpperCorner", new Dictionary<string, (int, int)>
-                    {
-                        { "West"     , west     },
-                        { "Southwest", southWest},
-                        { "South"    , south    }
-                    }
-                },
-                { "LeftLowerCorner", new Dictionary<string, (int, int)>
-                    {
-                        { "North"    , north    },
-                        { "Northeast", northEast},
-                        { "East"     , east     }
-                    }
-                },
-                { "RightLowerCorner", new Dictionary<string, (int, int)>
-                    {
-                        { "North"    , north    },
-                        { "Northwest", northWest},
-                        { "West"     , west     }
-                    }
-                },
-                { "Ceiling", new Dictionary<string, (int, int)>
-                    {
-                        { "West"     , west     },
-                        { "Southwest", southWest},
-                        { "South"    , south    },
-                        { "Southeast", southEast},
-                        { "East"     , east     }
-                    }
-                },
-                { "Floor", new Dictionary<string, (int, int)>
-                    {
-                        { "East"     , east     },
-                        { "Northeast", northEast},
-                        { "North"    , north    },
-                        { "Northwest", northWest},
-                        { "West"     , west     }
-                    }
-                },
-                { "LeftWall", new Dictionary<string, (int, int)>
-                    {
-                        { "North"    , north    },
-                        { "Northeast", northEast},
-                        { "East"     , east     },
-                        { "Southeast", southEast},
-                        { "South"    , south    }
-                    }
-                },
-                { "RightWall", new Dictionary<string, (int, int)>
-                    {
-                        { "South"    , south    },
-                        { "Southwest", southWest},
-                        { "West"     , west     },
-                        { "Northwest", northWest},
-                        { "North"    , north    }
-                    }
-                },
-                { "Free", new Dictionary<string, (int, int)>
-                    {
-                        { "Northwest", northWest},
-                        { "North"    , north    },
-                        { "Northeast", northEast},
-                        { "West"     , west     },
-                        { "East"     , east     },
-                        { "Southwest", southWest},
-                        { "South"    , south    },
-                        { "Southeast", southEast}
-                    }
-                },
+                { "east"     , east      },
+                { "southEast", southEast },
+                { "south"    , south     },
+                { "southWest", southWest },
+                { "west"     , west      },
+                { "northWest", northWest },
+                { "north"    , north     },
+                { "northEast", northEast },
             };
-            return positions;
         }
 
         int MineCounter(bool[][] matrix, Dictionary<string, int> coordinate)
         {
-            List<bool> adjacentPositions;
+            List<bool> adjacentPositions = new List<bool>();
             int rowLimit = matrix.Length - 1;
             int colLimit = matrix[0].Length - 1;
-            Dictionary<string, Dictionary<string, (int, int)>> minesLocator = MinesLocator(coordinate);
+            Dictionary<string, (int, int)> directionsGenerator = DirectionsGenerator(coordinate);
             if (coordinate["col"] == 0 && coordinate["row"] == 0) //LeftUpperCorner
             {
-                adjacentPositions = AddMines(matrix, minesLocator["LeftUpperCorner"]);    
+                adjacentPositions.AddRange(new List<bool>
+                { 
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2],
+                    matrix[directionsGenerator["southEast"].Item1][directionsGenerator["southEast"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2]
+                });
             }
             else if(coordinate["col"] == colLimit && coordinate["row"] == 0) //RightUpperCorner
             {
-                adjacentPositions = AddMines(matrix, minesLocator["RightUpperCorner"]);
-            }//fix below...
-            else if(coordinate.Item1 == rowLimit && coordinate.Item2 == 0) //LeftLowerCorner
-            {
-                adjacentPositions = AddMines(matrix, minesLocator["LeftLowerCorner"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2],
+                    matrix[directionsGenerator["southWest"].Item1][directionsGenerator["southWest"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2]
+                });
             }
-            else if(coordinate.Item1 == rowLimit && coordinate.Item2 == colLimit) //RightLowerCorner
+            else if(coordinate["col"] == 0 && coordinate["row"] == rowLimit) //LeftLowerCorner
             {
-                adjacentPositions = AddMines(matrix, minesLocator["RightLowerCorner"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[directionsGenerator["northEast"].Item1][directionsGenerator["northEast"].Item2],
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2]
+                });
             }
-            else if(coordinate.Item1 == 0 && coordinate.Item2 < colLimit) //Ceiling
+            else if(coordinate["col"] == colLimit && coordinate["row"] == rowLimit) //RightLowerCorner
             {
-                adjacentPositions = AddMines(matrix, minesLocator["Ceiling"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[directionsGenerator["northWest"].Item1][directionsGenerator["northWest"].Item2],
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2]
+                });
             }
-            else if(coordinate.Item1 == rowLimit && coordinate.Item2 < colLimit) //Floor
+            else if(coordinate["col"] < colLimit && coordinate["row"] == 0) //Ceiling
             {
-                adjacentPositions = AddMines(matrix, minesLocator["Floor"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2],
+                    matrix[directionsGenerator["southWest"].Item1][directionsGenerator["southWest"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2],
+                    matrix[directionsGenerator["southEast"].Item1][directionsGenerator["southEast"].Item2],
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2],
+                });
             }
-            else if(coordinate.Item1 < rowLimit && coordinate.Item2 == 0) //LeftWall
+            else if(coordinate["col"] < colLimit && coordinate["row"] == rowLimit) //Floor
             {
-                adjacentPositions = AddMines(matrix, minesLocator["LeftWall"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2],
+                    matrix[directionsGenerator["northWest"].Item1][directionsGenerator["northWest"].Item2],
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[directionsGenerator["northEast"].Item1][directionsGenerator["northEast"].Item2],
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2],
+                });
             }
-            else if(coordinate.Item1 < rowLimit && coordinate.Item2 == colLimit) //RightWall
+            else if(coordinate["col"] == 0 && coordinate["row"] < rowLimit) //LeftWall
             {
-                adjacentPositions = AddMines(matrix, minesLocator["RightWall"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[directionsGenerator["northEast"].Item1][directionsGenerator["northEast"].Item2],
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2],
+                    matrix[directionsGenerator["southEast"].Item1][directionsGenerator["southEast"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2],
+                });
+            }
+            else if(coordinate["col"] == colLimit && coordinate["row"] < rowLimit) //RightWall
+            {
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[directionsGenerator["northWest"].Item1][directionsGenerator["northWest"].Item2],
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2],
+                    matrix[directionsGenerator["southWest"].Item1][directionsGenerator["southWest"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2],
+                });
             }
             else //Free
             {
-                adjacentPositions = AddMines(matrix, minesLocator["Free"]);
+                adjacentPositions.AddRange(new List<bool>
+                {
+                    matrix[directionsGenerator["northWest"].Item1][directionsGenerator["northWest"].Item2],
+                    matrix[directionsGenerator["northEast"].Item1][directionsGenerator["northEast"].Item2],
+                    matrix[    directionsGenerator["north"].Item1][    directionsGenerator["north"].Item2],
+                    matrix[     directionsGenerator["west"].Item1][     directionsGenerator["west"].Item2],
+                    matrix[     directionsGenerator["east"].Item1][     directionsGenerator["east"].Item2],
+                    matrix[    directionsGenerator["south"].Item1][    directionsGenerator["south"].Item2],
+                    matrix[directionsGenerator["southEast"].Item1][directionsGenerator["southEast"].Item2],
+                    matrix[directionsGenerator["southWest"].Item1][directionsGenerator["southWest"].Item2]
+                });
             }
             return adjacentPositions.Count(b => b);
         }
