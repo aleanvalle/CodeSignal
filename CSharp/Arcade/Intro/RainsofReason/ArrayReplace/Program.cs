@@ -1,21 +1,22 @@
-﻿using System.Collections.Immutable;
-
-namespace ArrayReplace
+﻿namespace ArrayReplace
 {
     internal class Program
     {
+        int Replace(int elementInCollection, int elementToReplace, int substitutionElem)
+        {
+            if(elementInCollection == elementToReplace)
+            {
+                return substitutionElem;
+            }
+            else
+            {
+                return elementInCollection;
+            }
+        }
 
         int[] ArrayReplace(int[] inputArray, int elemToReplace, int substitutionElem)
         {
-            ImmutableArray<int> arrayWithReplaceMethod = new List<int>(inputArray).ToImmutableArray();
-            if(elemToReplace != substitutionElem)
-            {
-                while (arrayWithReplaceMethod.Contains(elemToReplace))
-                {
-                    arrayWithReplaceMethod = arrayWithReplaceMethod.Replace(elemToReplace, substitutionElem);
-                }
-            }
-            return arrayWithReplaceMethod.ToArray();
+            return inputArray.Select(elem => Replace(elem, elemToReplace, substitutionElem)).ToArray();
         }
 
         static void Main(string[] args)
