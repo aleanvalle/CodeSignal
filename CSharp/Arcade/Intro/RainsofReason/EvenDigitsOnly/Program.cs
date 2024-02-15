@@ -2,14 +2,14 @@
 {
     internal class Program
     {
-        bool digitIsEven(int n)
+        bool DigitIsEven(int n)
         {
             return n % 2 == 0;
         }
 
         bool EvenDigitsOnly(int n)
         {
-            return n.ToString().ToCharArray().Select(c => digitIsEven(int.Parse(c.ToString()))).ToArray().All(b => b);
+            return n.ToString().ToCharArray().Select(c => DigitIsEven(int.Parse(c.ToString()))).ToArray().All(b => b);
         }
 
         static void Main(string[] args)
