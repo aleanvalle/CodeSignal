@@ -2,7 +2,6 @@
 {
     internal class Program
     {
-
         string Digits()
         {
             return "0123456789";
