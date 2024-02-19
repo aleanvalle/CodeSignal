@@ -18,24 +18,6 @@
                 lowerAndUpperHalfs[h] = lower;
                 lower++;
             }
-            /*
-            for(int lh = 0; lh < half; lh++)
-            {
-                lowerHalf.Add(lh);
-            }
-            for(int uh = half; uh < n; uh++)
-            {
-                upperHalf.Add(uh);
-            }
-            if(lowerHalf.Contains(firstNumber))
-            {
-                return upperHalf.ElementAt(firstNumber);
-            }
-            else 
-            {
-                return lowerHalf.ElementAt(half - firstNumber);
-            }
-            */
             return lowerAndUpperHalfs[firstNumber];
         }
 
