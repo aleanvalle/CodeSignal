@@ -7,10 +7,11 @@
             double PERCENTAGE = 100.0;
             int years = 0;
             double percentageRate;
-            while(deposit < threshold)
+            double newDeposit = deposit;
+            while(newDeposit < threshold)
             {
                 percentageRate = (rate / PERCENTAGE);
-                deposit = (int) (deposit * ++percentageRate);
+                newDeposit = newDeposit * ++percentageRate;
                 years++;
             }
             return years;
