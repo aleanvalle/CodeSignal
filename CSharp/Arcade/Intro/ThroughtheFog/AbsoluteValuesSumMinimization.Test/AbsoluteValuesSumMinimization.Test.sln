@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbsoluteValuesSumMinimization.Test", "AbsoluteValuesSumMinimization.Test.csproj", "{55F2918E-EABE-4D1C-A46C-6B83DAE09D2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbsoluteValuesSumMinimization", "..\AbsoluteValuesSumMinimization\AbsoluteValuesSumMinimization.csproj", "{39B683E7-3243-4084-B78F-394BD3CF6A5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F2918E-EABE-4D1C-A46C-6B83DAE09D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F2918E-EABE-4D1C-A46C-6B83DAE09D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F2918E-EABE-4D1C-A46C-6B83DAE09D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F2918E-EABE-4D1C-A46C-6B83DAE09D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B683E7-3243-4084-B78F-394BD3CF6A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B683E7-3243-4084-B78F-394BD3CF6A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B683E7-3243-4084-B78F-394BD3CF6A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B683E7-3243-4084-B78F-394BD3CF6A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {901A93D6-D465-404E-A4D2-DBE0514AA615}
+	EndGlobalSection
+EndGlobal
