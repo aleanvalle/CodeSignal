@@ -13,7 +13,7 @@
         bool DiffersInOneChar(string string1, string string2)
         {
             List<bool> matchingCharacters = new List<bool>();
-            for(int i  = 0; i < string1.Length; i++)
+            for (int i = 0; i < string1.Length; i++)
             {
                 matchingCharacters.Add(AreCharEqual(string1[i], string2[i]));
             }
@@ -23,7 +23,7 @@
         bool StringsDifferConsecutivelyInOneChar(string[] inputArray)
         {
             List<bool> matchingArray = new List<bool>();
-            for(int i = 0; i < inputArray.Length - 1; i++)
+            for (int i = 0; i < inputArray.Length - 1; i++)
             {
                 matchingArray.Add(DiffersInOneChar(inputArray[i], inputArray[i + 1]));
             }
@@ -34,7 +34,7 @@
         {
             string[][] stringPermutation = permutations.GetPermutations(inputArray, inputArray.Length);
             List<bool> validRearrangements = new List<bool>();
-            for(int i = 0; i < stringPermutation.Length; i++)
+            for (int i = 0; i < stringPermutation.Length; i++)
             {
                 validRearrangements.Add(StringsDifferConsecutivelyInOneChar(stringPermutation[i]));
             }
@@ -44,7 +44,7 @@
         void Main(string[] args)
         {
             Program a = new Program();
-            string[] b = {"aba", "bbb", "bab"};
+            string[] b = { "aba", "bbb", "bab" };
             prettier.PrintMatrix(a.permutations.GetPermutations(b, b.Length));
         }
     }
