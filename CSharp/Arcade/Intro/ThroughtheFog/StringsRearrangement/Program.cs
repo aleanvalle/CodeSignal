@@ -2,55 +2,8 @@
 {
     public class Program
     {
-        bool IsOdd(int number)
-        {
-            return number % 2 == 1;
-        }
-
-        void Swap(string[] elementsToPermute, int a, int b)
-        {
-            string temp = elementsToPermute[a];
-            elementsToPermute[a] = elementsToPermute[b];
-            elementsToPermute[b] = temp;
-        }
-
-        string[][] StringPermutation(string[] elementsToPermute, int n)
-        {
-            List<List<string>> permutations = new List<List<string>>();
-            if(n == 1)
-            {
-                permutations.Add(elementsToPermute.ToList());
-                return permutations.Select(l => l.ToArray()).ToArray();
-            }
-            int[] index = new int[n];
-            for(int i = 0; i < n; i++)
-            {
-                index[i] = 0;
-            }
-            permutations.Add(elementsToPermute.ToList());
-            for(int i = 1; i < n;) 
-            {
-                if (index[i] < i)
-                {
-                    if (IsOdd(i))
-                    {
-                        Swap(elementsToPermute, i, index[i]);
-                    }
-                    else
-                    {
-                        Swap(elementsToPermute, i, 0);
-                    }
-                    permutations.Add(elementsToPermute.ToList());
-                    index[i]++;
-                    i = 1;
-                }
-                else
-                {
-                    index[i++] = 0;
-                }
-            }
-            return permutations.Select(l => l.ToArray()).ToArray();
-        }
+        Permutations.Program permutations = new Permutations.Program();
+        Prettier.Program prettier = new Prettier.Program();
 
         bool AreCharEqual(char character1, char character2)
         {
@@ -79,7 +32,7 @@
 
         public bool StringsRearrangement(string[] inputArray)
         {
-            string[][] stringPermutation = StringPermutation(inputArray, inputArray.Length);
+            string[][] stringPermutation = permutations.GetPermutations(inputArray, inputArray.Length);
             List<bool> validRearrangements = new List<bool>();
             for(int i = 0; i < stringPermutation.Length; i++)
             {
@@ -88,12 +41,11 @@
             return validRearrangements.Any(b => b);
         }
 
-        static void Main(string[] args)
+        void Main(string[] args)
         {
             Program a = new Program();
-            PrettyMultiArray.Program prettyMultiArray = new PrettyMultiArray.Program();
             string[] b = {"aba", "bbb", "bab"};
-            prettyMultiArray.PrintMatrix(a.StringPermutation(b, b.Length));
+            prettier.PrintMatrix(a.permutations.GetPermutations(b, b.Length));
         }
     }
 }

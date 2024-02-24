@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\VisualStudioProjects\PrettyMultiArray\PrettyMultiArray.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\VisualStudioProjects\Utils\Permutations\Permutations.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\VisualStudioProjects\Utils\Prettier\Prettier.csproj" />
   </ItemGroup>
 
 </Project>

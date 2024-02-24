@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringsRearrangement", "StringsRearrangement.csproj", "{E9B7A07A-EFA4-4330-86F7-2E15172A87AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrettyMultiArray", "..\..\..\..\..\..\VisualStudioProjects\PrettyMultiArray\PrettyMultiArray.csproj", "{652EDFCF-B0A7-4629-8788-AABC9A814815}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permutations", "..\..\..\..\..\..\VisualStudioProjects\Utils\Permutations\Permutations.csproj", "{542857A4-9948-45AD-806F-7BAC5D905C15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prettier", "..\..\..\..\..\..\VisualStudioProjects\Utils\Prettier\Prettier.csproj", "{8CD8CA98-710D-48BD-931F-ABD0DA5BE523}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{E9B7A07A-EFA4-4330-86F7-2E15172A87AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9B7A07A-EFA4-4330-86F7-2E15172A87AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9B7A07A-EFA4-4330-86F7-2E15172A87AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{652EDFCF-B0A7-4629-8788-AABC9A814815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{652EDFCF-B0A7-4629-8788-AABC9A814815}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{652EDFCF-B0A7-4629-8788-AABC9A814815}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{652EDFCF-B0A7-4629-8788-AABC9A814815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542857A4-9948-45AD-806F-7BAC5D905C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542857A4-9948-45AD-806F-7BAC5D905C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542857A4-9948-45AD-806F-7BAC5D905C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542857A4-9948-45AD-806F-7BAC5D905C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CD8CA98-710D-48BD-931F-ABD0DA5BE523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD8CA98-710D-48BD-931F-ABD0DA5BE523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD8CA98-710D-48BD-931F-ABD0DA5BE523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD8CA98-710D-48BD-931F-ABD0DA5BE523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
