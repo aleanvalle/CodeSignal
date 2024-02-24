@@ -77,13 +77,15 @@
             return matchingArray.All(b => b);
         }
 
-        bool StringsRearrangement(string[] inputArray)
-        { 
-            if(!StringsDifferConsecutivelyInOneChar(inputArray))
+        public bool StringsRearrangement(string[] inputArray)
+        {
+            string[][] stringPermutation = StringPermutation(inputArray, inputArray.Length);
+            List<bool> validRearrangements = new List<bool>();
+            for(int i = 0; i < stringPermutation.Length; i++)
             {
-                //continue later...
+                validRearrangements.Add(StringsDifferConsecutivelyInOneChar(stringPermutation[i]));
             }
-            return true;
+            return validRearrangements.Any(b => b);
         }
 
         static void Main(string[] args)
