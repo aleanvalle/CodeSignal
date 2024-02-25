@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\VisualStudioUtils\Utils\Permutations\Permutations.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\VisualStudioUtils\Utils\Prettier\Prettier.csproj" />
-  </ItemGroup>
-
 </Project>
