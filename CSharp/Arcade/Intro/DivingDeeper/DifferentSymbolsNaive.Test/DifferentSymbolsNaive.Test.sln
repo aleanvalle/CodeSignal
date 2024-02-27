@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferentSymbolsNaive.Test", "DifferentSymbolsNaive.Test.csproj", "{7E9250F4-644F-4ADC-A17F-A79A8C748DE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DifferentSymbolsNaive", "..\DifferentSymbolsNaive\DifferentSymbolsNaive.csproj", "{E747CB0B-87BA-4A0C-8779-3C1E45FC458E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E9250F4-644F-4ADC-A17F-A79A8C748DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9250F4-644F-4ADC-A17F-A79A8C748DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9250F4-644F-4ADC-A17F-A79A8C748DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9250F4-644F-4ADC-A17F-A79A8C748DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E747CB0B-87BA-4A0C-8779-3C1E45FC458E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E747CB0B-87BA-4A0C-8779-3C1E45FC458E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E747CB0B-87BA-4A0C-8779-3C1E45FC458E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E747CB0B-87BA-4A0C-8779-3C1E45FC458E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66028D69-638C-49C4-8A3B-0A784164EBE0}
+	EndGlobalSection
+EndGlobal
