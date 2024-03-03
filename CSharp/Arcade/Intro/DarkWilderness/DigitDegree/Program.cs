@@ -28,14 +28,6 @@
                     nArray = DigitsToCharArray(SumTheDigits(nArray));
                     degree++;
                 }
-                /*
-                int remainder = FromCharArrayToInt(nArray);
-                while (remainder > 9)
-                {
-                    remainder = FromCharArrayToInt(FromIntToCharArray(remainder));
-                    degree++;
-                }
-                */
             }
             return degree;
         }
