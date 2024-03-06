@@ -72,7 +72,7 @@
 
         bool CanAdvanceLeft(string bishop)
         {
-            return GetIntColumn(bishop[0]) - 1 > 0 && GetIntRow(bishop[1]) + 1 < 8;
+            return GetIntColumn(bishop[0]) - 1 >= 0 && GetIntRow(bishop[1]) + 1 < 8;
         }
 
         bool CanAdvanceRight(string bishop)
@@ -82,36 +82,37 @@
 
         bool CanRetreatLeft(string bishop)
         {
-            return GetIntColumn(bishop[0]) - 1 > 0 && GetIntRow(bishop[1]) - 1 > 0;
+            return GetIntColumn(bishop[0]) - 1 >= 0 && GetIntRow(bishop[1]) - 1 >= 0;
         }
 
         bool CanRetreatRight(string bishop)
         {
-            return GetIntColumn(bishop[0]) + 1 < 8 && GetIntRow(bishop[1]) - 1 > 0;
+            return GetIntColumn(bishop[0]) + 1 < 8 && GetIntRow(bishop[1]) - 1 >= 0;
         }
 
         string AdvanceLeft(string bishop)
         {
-            return (GetChessColumn(GetIntColumn(bishop[0]) - 1) + GetChessRow(GetIntRow(bishop[1]) + 1)).ToString();
+            return GetChessColumn(GetIntColumn(bishop[0]) - 1).ToString() + GetChessRow(GetIntRow(bishop[1]) + 1).ToString();
         }
 
         string AdvanceRight(string bishop)
         {
-            return (GetChessColumn(GetIntColumn(bishop[0]) + 1) + GetChessRow(GetIntRow(bishop[1]) + 1)).ToString();
+            return GetChessColumn(GetIntColumn(bishop[0]) + 1).ToString() + GetChessRow(GetIntRow(bishop[1]) + 1).ToString();
         }
 
         string RetreatLeft(string bishop)
         {
-            return (GetChessColumn(GetIntColumn(bishop[0]) - 1) + GetChessRow(GetIntRow(bishop[1]) - 1)).ToString();
+            return GetChessColumn(GetIntColumn(bishop[0]) - 1).ToString() + GetChessRow(GetIntRow(bishop[1]) - 1).ToString();
         }
 
         string RetreatRight(string bishop)
         {
-            return (GetChessColumn(GetIntColumn(bishop[0]) + 1) + GetChessRow(GetIntRow(bishop[1]) - 1)).ToString();
+            return GetChessColumn(GetIntColumn(bishop[0]) + 1).ToString() + GetChessRow(GetIntRow(bishop[1]) - 1).ToString();
         }
 
-        void Attack(string bishop, string pawn, bool captured)
+        bool BishopAttack(string bishop, string pawn)
         {
+            bool captured = false;
             string originalBishopPosition = bishop;
             while (CanAdvanceRight(bishop))
             {
@@ -164,7 +165,7 @@
                     bishop = RetreatLeft(bishop);
                 }
             }
-            return;
+            return captured;
         }
 
         public bool BishopAndPawn(string bishop, string pawn)
@@ -175,9 +176,7 @@
             }
             else
             {
-                bool captured = false;
-                Attack(bishop, pawn, captured);
-                return captured;
+                return BishopAttack(bishop, pawn);
             }
         }
 
