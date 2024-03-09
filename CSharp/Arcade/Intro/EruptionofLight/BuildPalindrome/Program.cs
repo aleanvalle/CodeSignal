@@ -22,7 +22,7 @@
             return antepenultimate != penultimate && antepenultimate == ultimate && penultimate != ultimate;
         }
 
-        string PivotToBuild(string normal, string reversed)
+        string PivotCharsToBuild(string normal, string reversed)
         {
             char ultimate = normal[normal.Length - 1];
             char penultimate = normal[normal.Length - 2];
@@ -42,24 +42,28 @@
             return normal;
         }
 
-        string AddDifferent(string normal, string reversed)
+        string AddDifferentChars(string normal, string reversed)
         {
-            string addDifferent = "";
-            for(int i = 0; i < normal.Length; i++)
+            string differentChars = "";
+            int reversedStep = 0;
+            int normalStep = 0;
+            while(true)
             {
-                for(int j = 0; j < reversed.Length;)
+                while(normalStep < normal.Length)
                 {
-                    if (normal[i] == reversed[j])
+                    if (normal[normalStep] == reversed[reversedStep])
                     {
-                        j++;
+                        reversedStep++;
                     }
                     else
                     {
-                        addDifferent.Insert(0, normal[i].ToString());
+                        differentChars = differentChars.Insert(0, normal[normalStep].ToString());
                     }
+                    normalStep++;
                 }
+                break;
             }
-            return normal + addDifferent;
+            return normal + differentChars;
         }
 
         public string BuildPalindrome(string st)
@@ -67,10 +71,10 @@
             string originalString = st;
             if (!CheckPalindrome(st))
             {
-                st = AddDifferent(originalString, (string) originalString.Reverse());
+                st = AddDifferentChars(originalString, new string (originalString.Reverse().ToArray()));
                 if (!CheckPalindrome(st))
                 {
-                    st = PivotToBuild(originalString, (string) originalString.Reverse());
+                    st = PivotCharsToBuild(originalString, new string (originalString.Reverse().ToArray()));
                 }
             }
             return st;
