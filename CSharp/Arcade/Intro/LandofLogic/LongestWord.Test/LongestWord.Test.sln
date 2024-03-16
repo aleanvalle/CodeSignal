@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongestWord.Test", "LongestWord.Test.csproj", "{13CF7CA8-C81A-45B8-A4AD-36EB612DFD63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongestWord", "..\LongestWord\LongestWord.csproj", "{BF11026B-47B6-4FAA-9E7C-856C1633F4F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13CF7CA8-C81A-45B8-A4AD-36EB612DFD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CF7CA8-C81A-45B8-A4AD-36EB612DFD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CF7CA8-C81A-45B8-A4AD-36EB612DFD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CF7CA8-C81A-45B8-A4AD-36EB612DFD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF11026B-47B6-4FAA-9E7C-856C1633F4F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF11026B-47B6-4FAA-9E7C-856C1633F4F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF11026B-47B6-4FAA-9E7C-856C1633F4F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF11026B-47B6-4FAA-9E7C-856C1633F4F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BF88489-1A8C-4A6C-9210-9C240844B843}
+	EndGlobalSection
+EndGlobal
