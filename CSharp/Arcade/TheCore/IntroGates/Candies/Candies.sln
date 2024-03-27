@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candies", "Candies.csproj", "{DD93F386-6FA3-4FE6-B91E-7215F24D2F26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD93F386-6FA3-4FE6-B91E-7215F24D2F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD93F386-6FA3-4FE6-B91E-7215F24D2F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD93F386-6FA3-4FE6-B91E-7215F24D2F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD93F386-6FA3-4FE6-B91E-7215F24D2F26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B911A151-25C0-4768-B282-3E060CB2B269}
+	EndGlobalSection
+EndGlobal
